@@ -10,6 +10,7 @@ const Heading = styled("h1")`
   padding: ${(props) => props.pd};
 `;
 
+// extending styled components using withComponent
 const Subheading = Heading.withComponent("h2");
 
 const Quote = styled("blockquote")((props) => ({
@@ -27,6 +28,25 @@ const Quote2 = styled("blockquote")(
     fontWeight: props.weight,
   })
 );
+
+const Button = styled("button")`
+  cursor: pointer;
+  width: ${(props) => (props.primary ? "200px" : "300px")};
+  color: ${(props) => (props.primary ? "black" : "white")};
+  background-color: ${(props) => (props.primary ? "white" : "black")};
+  border-radius: ${(props) => (props.primary ? "0px" : "5px")};
+  &:hover {
+    background-color: ${(props) => (props.primary ? "lime" : "red")};
+  }
+`;
+
+const Container = styled("div")((props) => ({
+  marginTop: "20px",
+  display: "flex",
+  flexDirection: props.column && "column",
+  gap: "10px",
+  alignItems: "center",
+}));
 
 function App() {
   return (
@@ -84,6 +104,14 @@ function App() {
         when using the component. - overridden fontWeight value using the weight
         prop
       </Quote2>
+
+      <Button>Primary False</Button>
+      <Button primary>Primary True</Button>
+
+      <Container column>
+        <Button primary>Primary True</Button>
+        <Button>Primary False</Button>
+      </Container>
     </div>
   );
 }
